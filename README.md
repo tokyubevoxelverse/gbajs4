@@ -98,4 +98,4 @@ JavaBoy/
 
 ## License
 
-Upstream gbajs3 is GPL-3.0. This fork inherits the same license.
+MIT — see [LICENSE](LICENSE). Upstream [gbajs3](https://github.com/thenick775/gbajs3) is GPL-3.0; that license still governs the upstream code this fork is built on.
