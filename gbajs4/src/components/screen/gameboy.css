@@ -1,0 +1,220 @@
+/* Minimal GameBoy shell styles adapted from JavaBoy project
+   Provides a visual cutout around the emulator canvas. */
+.gameboydiv{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Force the screen wrapper and any generated resizable elements to be transparent */
+[data-testid="screen-wrapper"] {
+  background: transparent !important;
+}
+
+[data-testid="screen-wrapper"] .react-rnd, 
+[data-testid="screen-wrapper"] .react-rnd * {
+  background: transparent !important;
+}
+
+/* Frame image placed behind the canvas */
+#gameboyFrame{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 95%; /* make the GBA frame bigger */
+  height: auto;
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Canvas (game) sits above the frame image and is scaled to fit the inner window */
+#gameboyScreen{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 38%; /* slightly smaller to better fit the frame as requested */
+  height: auto;
+  aspect-ratio: 240 / 160;
+  z-index: 2;
+  image-rendering: pixelated;
+  background: transparent;
+  object-fit: contain;
+}
+
+/* small invisible buttons kept for parity with original markup */
+#gameStartBtn, #gameResizeBtn{
+  position: absolute;
+  width: 1.5rem;
+  height: 1.5rem;
+  opacity: 0.001;
+  z-index: 10;
+  border: none;
+  background: transparent;
+}
+
+/* Themes button top-right */
+/* Theme button uses theme variables */
+#themeButton{
+  position: fixed !important; /* pin to viewport */
+  right: 0 !important; /* flush with right edge */
+  top: 0 !important; /* flush with top edge */
+  margin: 12px !important; /* visible padding from edge */
+  z-index: 2147483647 !important; /* maximum z-index to ensure visibility */
+  padding: 10px 14px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: linear-gradient(135deg, var(--pv-accent), color-mix(in srgb, var(--pv-accent) 60%, white)) !important;
+  color: var(--pv-accent-text) !important;
+  cursor: pointer !important;
+  font-weight: 800 !important;
+  font-size: 14px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45) !important;
+}
+
+/* Particles toggle button directly under the themes button */
+#particlesButton{
+  position: fixed !important;
+  right: 0 !important;
+  top: 56px !important; /* placed under the theme button (themeButton uses margin 12px + height) */
+  margin: 12px !important;
+  z-index: 2147483647 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--pv-accent) 60%, white), var(--pv-accent)) !important;
+  color: var(--pv-accent-text) !important;
+  cursor: pointer !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.45) !important;
+}
+
+/* Canvas used for particles */
+#pvParticlesCanvas{
+  position: fixed !important;
+  right: 0 !important;
+  top: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  pointer-events: none !important;
+  z-index: 2147483662 !important;
+}
+
+/* Modal overlay and dialog use theme variables */
+.theme-modal-overlay{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: var(--pv-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.theme-modal{
+  background: var(--pv-modal-bg);
+  color: var(--pv-text);
+  padding: 18px;
+  border-radius: 10px;
+  min-width: 360px;
+  max-width: 700px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  text-align: center;
+}
+
+.theme-modal h3{ margin: 0 0 12px 0; }
+.theme-button-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+}
+.theme-btn{
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: 700;
+  color: var(--pv-text);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--pv-accent) 60%, black), var(--pv-accent));
+}
+
+.theme-close{
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: var(--pv-panel);
+  color: var(--pv-text);
+}
+
+/* Bottom-right logo shown in viewport (non-interactive by default) */
+/* Strongly constrain the logo so it stays small in the bottom-right. */
+#pvLogo{
+  position: fixed !important;
+  right: 12px !important;
+  bottom: 12px !important;
+  display: block !important;
+  width: 96px !important; /* enforced small width */
+  height: auto !important;
+  max-width: 120px !important;
+  max-height: 12vh !important;
+  z-index: 2147483660 !important; /* above theme button */
+  pointer-events: none !important; /* non-interactive to avoid layout shifts */
+  user-select: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  image-rendering: auto !important;
+  object-fit: contain !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+/* Text displayed above the floating logo */
+#pvLogoText{
+  position: fixed !important;
+  right: 12px !important;
+  /* place above the logo which can be up to 12vh tall */
+  bottom: calc(12px + 12vh + 6px) !important;
+  z-index: 2147483661 !important;
+  font-weight: 800 !important;
+  color: var(--pv-text) !important;
+  background: transparent !important;
+  pointer-events: none !important;
+  user-select: none !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  text-align: right !important;
+}
+
+/* debug overlay removed */
+
+/* Make the logo responsive: smaller on narrow viewports */
+@media (max-width: 800px) {
+  #pvLogo{
+    width: 110px !important;
+    max-width: 28vw !important;
+  }
+}
+
+@media (max-width: 420px) {
+  #pvLogo{
+    width: 88px !important;
+    max-width: 36vw !important;
+  }
+}
+
+/* Dark backgrounds with pastel text colors */
+.theme-default{ }
+.theme-red{ }
+.theme-orange{ }
+.theme-yellow{ }
+.theme-green{ }
+.theme-blue{ }
+.theme-pink{ }
+.theme-purple{ }

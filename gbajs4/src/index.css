@@ -1,0 +1,176 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  -webkit-touch-callout: none;
+  -webkit-user-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -ms-touch-action: none;
+  touch-action: none;
+  -webkit-user-modify: none;
+  -webkit-highlight: none;
+
+  /* Themeable CSS variables */
+  --pv-bg: #212529;
+  --pv-panel: #2f2f2f;
+  --pv-text: #e6e6e6;
+  --pv-accent: #2f6bff; /* default blue accent */
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(255,255,255,0.96);
+  --pv-overlay: rgba(0,0,0,0.5);
+  --pv-gradient: none;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100dvh;
+  /* Use explicit background layers: color always applied, gradient applied as background-image when present.
+     This avoids the case where --pv-gradient is set to 'none' and prevents the fallback from working. */
+  background-color: var(--pv-bg);
+  background-image: var(--pv-gradient);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  font-family: 'Calibri', 'Verdana', sans-serif;
+}
+
+html,
+body {
+  overscroll-behavior: none;
+}
+
+/* Theme classes applied on the root element (document.documentElement) */
+.theme-default {
+  --pv-bg: #212529;
+  --pv-panel: #2f2f2f;
+  --pv-text: #e6e6e6;
+  --pv-accent: #2f6bff;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(255,255,255,0.96);
+  --pv-overlay: rgba(0,0,0,0.5);
+}
+.theme-red {
+  --pv-bg: #2a0a0a;
+  --pv-panel: #3a0b0b;
+  --pv-text: #ffd6d6;
+  --pv-accent: #ff6b6b;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(40,10,10,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+.theme-orange {
+  --pv-bg: #2b1808;
+  --pv-panel: #4a2b08;
+  --pv-text: #fff0da;
+  --pv-accent: #ff9f43;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(50,30,10,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+.theme-yellow {
+  --pv-bg: #2b2a08;
+  --pv-panel: #4a4720;
+  --pv-text: #fff9d6;
+  --pv-accent: #ffd43b;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(50,50,20,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+.theme-green {
+  --pv-bg: #061e12;
+  --pv-panel: #04341f;
+  --pv-text: #dfffe6;
+  --pv-accent: #17c964;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(10,40,30,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+.theme-blue {
+  --pv-bg: #071533;
+  --pv-panel: #04264d;
+  --pv-text: #d9ecff;
+  --pv-accent: #2f6bff;
+  --pv-accent-text: #e6f0ff;
+  --pv-modal-bg: rgba(10,20,40,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+.theme-pink {
+  --pv-bg: #26041a;
+  --pv-panel: #3a062b;
+  --pv-text: #ffd9ee;
+  --pv-accent: #ff6fb6;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(40,10,30,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+.theme-purple {
+  --pv-bg: #100427;
+  --pv-panel: #23103a;
+  --pv-text: #efe0ff;
+  --pv-accent: #8b5cff;
+  --pv-accent-text: #041018;
+  --pv-modal-bg: rgba(20,10,40,0.96);
+  --pv-overlay: rgba(0,0,0,0.55);
+}
+
+.theme-valentines {
+  --pv-bg: linear-gradient(135deg, #ff4d6d, #ff91c2, #c28bff, #d6a3ff, #5b2ea6);
+  --pv-panel: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08));
+  --pv-text: #ffcdf7; /* light pink */
+  --pv-accent: #ff4d6d; /* prominent red-pink */
+  --pv-accent-text: #ffffff;
+  --pv-modal-bg: linear-gradient(180deg, rgba(255,105,135,0.12), rgba(155,80,200,0.12));
+  --pv-overlay: rgba(32,10,40,0.6);
+  --pv-gradient: linear-gradient(135deg, #ff4d6d 0%, #ff91c2 25%, #c28bff 50%, #d6a3ff 75%, #5b2ea6 100%);
+}
+
+/* Make navigation menu text use a gradient fill for valentines */
+.theme-valentines #menu-wrapper li {
+  /* Use solid black menu text for Valentines as requested */
+  color: #000 !important;
+  background: transparent !important;
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
+}
+
+.theme-valentines #menu-wrapper li:hover {
+  filter: brightness(0.98);
+  color: #000 !important;
+  background: transparent !important;
+}
+
+/* Navigation/menu color overrides to follow theme accent */
+#menu-wrapper li {
+  color: var(--pv-accent) !important;
+}
+
+#menu-wrapper li:hover {
+  color: color-mix(in srgb, var(--pv-accent) 70%, var(--pv-text)) !important;
+  background-color: var(--pv-panel) !important;
+}
+
+#menu-wrapper a, #menu-wrapper button {
+  color: inherit !important;
+}
+
+/* Focus indication for hamburger/menu button uses accent */
+#menu-btn:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 0.25rem color-mix(in srgb, var(--pv-accent) 40%, transparent) !important;
+}

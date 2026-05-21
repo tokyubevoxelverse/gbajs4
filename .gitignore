@@ -1,0 +1,55 @@
+# Node / build
+node_modules/
+gbajs4/coverage/
+gbajs4/stats.html
+gbajs4/.vite/
+**/.vite/
+.cache/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Encoded / experimental python
+*.bpy
+
+# Runtime state
+debug.log
+*.log
+pv-electron.log
+.node_server.pid
+
+# Editor
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# GBA ROMs (legal: don't commit copyrighted ROMs)
+*.gba
+*.gbc
+*.gb
+*.zip
+Favorites/
+
+# Save data
+*.sav
+*.srm
+*.ss[0-9]
+
+# Bundled / offline / large
+# (OfflineDependencies IS committed — bundled Node.exe so users without Node installed can build/run)
+JavaBoyAdvance Setup *.exe
+dist-electron/
+release/
+out/
+
+# OS junk
+desktop.ini
